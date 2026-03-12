@@ -3,13 +3,14 @@ import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 import Link from "next/link";
 import { SplitText } from "gsap/SplitText"
-import {useRef} from "react";
+import {useRef, useState} from "react";
 
 gsap.registerPlugin(useGSAP, SplitText);
 
 export default function NavBar() {
 
     const container = useRef(null);
+    const [padding, setPadding] = useState("md:py-21 sm:py-18 py-16")
 
     useGSAP(() => {
         gsap.to("#separator", {
@@ -31,26 +32,25 @@ export default function NavBar() {
             yPercent: 100,
             delay: 2.5,
         })
-        gsap.to("#links", {
-            display: "flex",
-            delay:3,
-            duration:2,
-        })
-        gsap.to("#links", {
-            textDecoration: "underline",
-            opacity: 1,
-            delay:3,
-            duration:2,
-        })
+        if (window.matchMedia("(min-width: 402px)")) {
+            gsap.to("#links", {
+                display: "flex",
+                textDecoration: "underline",
+                opacity: 1,
+                delay:3,
+                duration:2,
+            })
+        }
+        setPadding("")
     },{scope: container});
 
     return(
         <header>
             <div id="header" ref={container} className="flex items-center justify-center bg-zinc-50 font-sans dark:bg-black countainer">
-                <div className="flex w-full max-w-3xl flex-col items-center px-16 bg-white dark:bg-black sm:items-start">
-                    <div id="name" className="flex flex-col">
+                <div id="pad" className={`flex w-full max-w-4xl flex-col justify-center items-center ${padding} bg-white dark:bg-black sm:items-start`}>
+                    <div id="name" className="mx-auto">
                         <div className="flex w-full items-center gap-1 justify-center">
-                            <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
+                            <h1 className="max-w-xs text-3xl font-semibold sm:py-1 leading-10 tracking-tight text-black dark:text-zinc-50">
                                 Fergus
                             </h1>
                             <hr id="separator" />
@@ -59,11 +59,11 @@ export default function NavBar() {
                             </h1>
                         </div>
                         <div>
-                            <h2 id="subtitle" className="text-3xl leading-10 tracking-tight text-black dark:text-zinc-50">
+                            <h2 id="subtitle" className="md:text-3xl text-base text-center tracking-tight text-black dark:text-zinc-50">
                                 A Frontend focused Fullstack developer
                             </h2>
                         </div>
-                        <div id="links" style={{display:"none", opacity: 0}} className="text-3xl justify-between">
+                        <div id="links" style={{display:"none", opacity: 0}} className="md:text-3xl text-sm justify-between">
                             <Link href="/">
                                 Home
                             </Link>
