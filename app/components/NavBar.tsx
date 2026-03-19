@@ -3,14 +3,14 @@ import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 import Link from "next/link";
 import { SplitText } from "gsap/SplitText"
-import {useRef, useState} from "react";
+import {useRef} from "react";
 
 gsap.registerPlugin(useGSAP, SplitText);
 
 export default function NavBar() {
 
     const container = useRef(null);
-    const [padding, setPadding] = useState("md:py-21 sm:py-18 py-16")
+    //const [padding, setPadding] = useState("md:py-21 sm:py-18 py-16")
 
     useGSAP(() => {
         gsap.to("#separator", {
@@ -41,13 +41,13 @@ export default function NavBar() {
                 duration:2,
             })
         }
-        setPadding("")
+        //setPadding("")
     },{scope: container});
 
     return(
         <header>
             <div id="header" ref={container} className="flex items-center justify-center bg-zinc-50 font-sans dark:bg-black countainer">
-                <div id="pad" className={`flex w-full max-w-4xl flex-col justify-center items-center ${padding} bg-white dark:bg-black sm:items-start`}>
+                <div id="pad" className={`flex min-h-30 w-full max-w-4xl flex-col justify-center items-center bg-white dark:bg-black sm:items-start`}>
                     <div id="name" className="mx-auto">
                         <div className="flex w-full items-center gap-1 justify-center">
                             <h1 className="max-w-xs text-3xl font-semibold sm:py-1 leading-10 tracking-tight text-black dark:text-zinc-50">
@@ -73,7 +73,7 @@ export default function NavBar() {
                             <Link href="/projects">
                                 Projects
                             </Link>
-                            <Link href="/other">
+                            <Link href="/anchors">
                                 Other
                             </Link>
                         </div>

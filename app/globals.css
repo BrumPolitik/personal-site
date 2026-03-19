@@ -36,3 +36,18 @@ body {
 #subtitle {
   opacity: 0;
 }
+
+.repo-card{
+  background-color: #414345;
+  min-width: 75%;
+  border: 1px solid rgba(0,0,.125);
+  margin: auto;
+  height: 2500px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+ul{
+  list-style: disc;
+  padding-left: 40px;
+}

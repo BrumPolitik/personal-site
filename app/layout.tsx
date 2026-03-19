@@ -28,8 +28,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NavBar />
-        {children}
+        <div className="flex flex-col">
+            <div>
+                <NavBar />
+            </div>
+            <div className="py-20 bg-white dark:bg-black">
+                {children}
+            </div>
+        </div>
       </body>
     </html>
   );
